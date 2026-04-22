@@ -20,11 +20,12 @@ def index():
     return render_template("index.html", score=score, skills=skills)
 
 
-# ✅ TEST ROUTE
-@app.route("/test")
+# 🔥 FORCE TEST ROUTE (this WILL work)
+@app.route("/test", methods=["GET"])
 def test():
-    return "Working 123 🚀"
+    return "TEST ROUTE WORKING ✅"
 
 
-# ✅ THIS LINE IS CRITICAL FOR RENDER
-app = app
+# 🔥 IMPORTANT FOR RENDER
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=10000)
