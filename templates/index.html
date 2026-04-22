@@ -5,7 +5,7 @@
 
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: Arial;
             background: linear-gradient(to right, #1e3c72, #2a5298);
             margin: 0;
             padding: 0;
@@ -19,26 +19,14 @@
             color: black;
             padding: 30px;
             border-radius: 15px;
-            box-shadow: 0px 10px 30px rgba(0,0,0,0.3);
-        }
-
-        h1 {
             text-align: center;
-            color: #2a5298;
         }
 
-        input[type="file"],
-        textarea {
+        input, textarea {
             width: 100%;
             margin-top: 10px;
             margin-bottom: 20px;
             padding: 10px;
-            border-radius: 8px;
-            border: 1px solid #ccc;
-        }
-
-        textarea {
-            height: 120px;
         }
 
         button {
@@ -48,35 +36,22 @@
             color: white;
             border: none;
             border-radius: 8px;
-            font-size: 16px;
             cursor: pointer;
-        }
-
-        button:hover {
-            background: #1e3c72;
         }
 
         .result {
             margin-top: 20px;
             padding: 15px;
             background: #f1f5ff;
-            border-left: 5px solid #2a5298;
-            border-radius: 8px;
-        }
-
-        .score {
-            font-size: 22px;
-            font-weight: bold;
         }
 
         .skills span {
-            display: inline-block;
             background: #2a5298;
             color: white;
             padding: 5px 10px;
             margin: 5px;
+            display: inline-block;
             border-radius: 20px;
-            font-size: 12px;
         }
     </style>
 </head>
@@ -87,21 +62,18 @@
     <h1>🚀 AI Resume Matcher</h1>
 
     <form method="POST" enctype="multipart/form-data">
-        <label>Upload Resume (PDF):</label>
         <input type="file" name="resume" required>
 
-        <label>Paste Job Description:</label>
-        <textarea name="job_description" required></textarea>
+        <textarea name="job_description" placeholder="Paste Job Description" required></textarea>
 
         <button type="submit">Check Match</button>
     </form>
 
     {% if score %}
     <div class="result">
-        <div class="score">Match Score: {{ score }}%</div>
+        <h2>Match Score: {{ score }}%</h2>
 
         <div class="skills">
-            <b>Detected Skills:</b><br>
             {% for skill in skills %}
                 <span>{{ skill }}</span>
             {% endfor %}
