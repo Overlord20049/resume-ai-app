@@ -23,7 +23,7 @@ def index():
 # ✅ TEST ROUTE
 @app.route("/test")
 def test():
-    return "Working 🚀"
+    return "Working 123 🚀"
 
 
 # ✅ THIS LINE IS CRITICAL FOR RENDER
