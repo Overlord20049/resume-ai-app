@@ -20,5 +20,11 @@ def index():
     return render_template("index.html", score=score, skills=skills)
 
 
-# 🔥 IMPORTANT: ADD THIS (Render needs it)
+# 👇 ADD IT HERE
+@app.route("/test")
+def test():
+    return "Working"
+
+
+# 🔥 required for Render
 app = app
