@@ -20,5 +20,12 @@ def index():
     return render_template("index.html", score=score, skills=skills)
 
 
-# ✅ THIS LINE IS CRITICAL FOR RENDER
-app = app
+# ✅ Debug route (helps verify deployment)
+@app.route("/test")
+def test():
+    return "App is working 🚀"
+
+
+# ✅ Run locally (Render ignores this, but useful for testing)
+if __name__ == "__main__":
+    app.run(debug=True)
