@@ -23,7 +23,3 @@ def index():
 @app.route("/test")
 def test():
     return "Working 🚀"
-
-
-# ✅ IMPORTANT FOR RENDER
-application = app
