@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request
-from utils import extract_text, match_score
+from utils import extract_text, match_score, extract_skills
 
 app = Flask(__name__)
 
@@ -14,14 +14,9 @@ def index():
 
         resume_text = extract_text(file)
         score = match_score(resume_text, job_desc)
-
-        # simple skill extraction (top words)
-        skills = list(set(job_desc.lower().split()))[:8]
+        skills = extract_skills(resume_text)
 
     return render_template("index.html", score=score, skills=skills)
 
-import os
-
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 5001))
-    app.run(host="0.0.0.0", port=port)
+    app.run(debug=True, port=5001)
