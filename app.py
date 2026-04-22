@@ -9,17 +9,16 @@ def index():
     skills = []
 
     if request.method == "POST":
-        file = request.files["resume"]
-        job_desc = request.form["job_description"]
+        file = request.files.get("resume")
+        job_desc = request.form.get("job_description")
 
-        resume_text = extract_text(file)
-        score = match_score(resume_text, job_desc)
-
-        skills = job_desc.lower().split()[:5]
+        if file and job_desc:
+            resume_text = extract_text(file)
+            score = match_score(resume_text, job_desc)
+            skills = job_desc.lower().split()[:5]
 
     return render_template("index.html", score=score, skills=skills)
 
 
-# 🔥 IMPORTANT FOR RENDER
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=10000)
+# ✅ THIS LINE IS CRITICAL FOR RENDER
+app = app
