@@ -5,104 +5,122 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #1e1e2f, #2c2c54);
-            color: white;
-            text-align: center;
-            padding: 40px;
+            background: linear-gradient(to right, #1e3c72, #2a5298);
+            margin: 0;
+            padding: 0;
         }
 
         .container {
-            background: #2f2f4f;
-            padding: 30px;
+            width: 45%;
+            margin: 60px auto;
+            background: white;
+            padding: 40px;
             border-radius: 15px;
-            width: 500px;
-            margin: auto;
-            box-shadow: 0px 0px 20px rgba(0,0,0,0.5);
+            box-shadow: 0px 15px 40px rgba(0,0,0,0.3);
         }
 
         h1 {
-            margin-bottom: 20px;
+            text-align: center;
+            margin-bottom: 30px;
+            color: #2a5298;
         }
 
-        input, textarea {
-            width: 90%;
-            padding: 10px;
-            margin: 10px 0;
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 15px;
+        }
+
+        input[type="file"],
+        textarea {
+            width: 100%;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            padding: 12px;
             border-radius: 8px;
-            border: none;
+            border: 1px solid #ccc;
+            font-size: 14px;
         }
 
         textarea {
-            height: 120px;
+            height: 150px;
+            resize: none;
         }
 
         button {
-            background: #00c9a7;
-            color: black;
-            padding: 10px 20px;
+            width: 100%;
+            padding: 14px;
+            background: #2a5298;
+            color: white;
             border: none;
-            border-radius: 8px;
+            border-radius: 10px;
+            font-size: 16px;
             cursor: pointer;
-            font-weight: bold;
+            transition: 0.3s;
         }
 
         button:hover {
-            background: #00a88a;
+            background: #1e3c72;
         }
 
         .result {
-            margin-top: 20px;
-            background: #1e1e2f;
-            padding: 15px;
+            margin-top: 25px;
+            padding: 20px;
+            background: #f4f7ff;
+            border-left: 5px solid #2a5298;
             border-radius: 10px;
         }
 
         .score {
             font-size: 24px;
             font-weight: bold;
-            color: #00ffcc;
+            color: #2a5298;
         }
 
-        ul {
-            text-align: left;
+        .skills {
+            margin-top: 10px;
+        }
+
+        .skills span {
+            display: inline-block;
+            background: #2a5298;
+            color: white;
+            padding: 6px 12px;
+            margin: 5px;
+            border-radius: 20px;
+            font-size: 12px;
         }
     </style>
 </head>
-
 <body>
-    <div class="container">
-        <h1>🚀 AI Resume Matcher</h1>
 
-        <form method="POST" enctype="multipart/form-data">
-            <p>Upload Resume (PDF)</p>
-            <input type="file" name="resume" required>
+<div class="container">
+    <h1>🚀 AI Resume Matcher</h1>
 
-            <p>Paste Job Description</p>
-            <textarea name="job_desc" required></textarea>
+    <form method="POST" enctype="multipart/form-data">
+        <label>Upload Resume (PDF):</label>
+        <input type="file" name="resume" required>
 
-            <br>
-            <button type="submit">Check Match</button>
-        </form>
+        <label>Paste Job Description:</label>
+        <textarea name="job_description" placeholder="Paste job description here..." required></textarea>
 
-        {% if score %}
-        <div class="result">
-            <p class="score">Match Score: {{ score }}%</p>
+        <button type="submit">Check Match</button>
+    </form>
 
-            <h3>✅ Skills Found</h3>
-            <ul>
-                {% for skill in found %}
-                <li>{{ skill }}</li>
-                {% endfor %}
-            </ul>
+    {% if score %}
+    <div class="result">
+        <div class="score">Match Score: {{ score }}%</div>
 
-            <h3>❌ Missing Skills</h3>
-            <ul>
-                {% for skill in missing %}
-                <li>{{ skill }}</li>
-                {% endfor %}
-            </ul>
+        <div class="skills">
+            <strong>Top Keywords:</strong><br>
+            {% for skill in skills %}
+                <span>{{ skill }}</span>
+            {% endfor %}
         </div>
-        {% endif %}
     </div>
+    {% endif %}
+
+</div>
+
 </body>
 </html>
