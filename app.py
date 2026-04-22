@@ -20,6 +20,11 @@ def index():
     return render_template("index.html", score=score, skills=skills)
 
 
+# ✅ TEST ROUTE
 @app.route("/test")
 def test():
     return "Working 🚀"
+
+
+# ✅ THIS LINE IS CRITICAL FOR RENDER
+app = app
