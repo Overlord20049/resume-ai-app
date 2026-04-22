@@ -8,7 +8,6 @@
             font-family: Arial;
             background: linear-gradient(to right, #1e3c72, #2a5298);
             margin: 0;
-            padding: 0;
             color: white;
         }
 
@@ -36,22 +35,13 @@
             color: white;
             border: none;
             border-radius: 8px;
-            cursor: pointer;
-        }
-
-        .result {
-            margin-top: 20px;
-            padding: 15px;
-            background: #f1f5ff;
         }
 
         .skills span {
-            background: #2a5298;
-            color: white;
             padding: 5px 10px;
             margin: 5px;
             display: inline-block;
-            border-radius: 20px;
+            border-radius: 15px;
         }
     </style>
 </head>
@@ -63,9 +53,7 @@
 
     <form method="POST" enctype="multipart/form-data">
         <input type="file" name="resume" required>
-
         <textarea name="job_description" placeholder="Paste Job Description" required></textarea>
-
         <button type="submit">Check Match</button>
     </form>
 
@@ -73,14 +61,21 @@
     <div class="result">
         <h2>Match Score: {{ score }}%</h2>
 
+        <h3>✅ Matched Skills</h3>
         <div class="skills">
-            {% for skill in skills %}
-                <span>{{ skill }}</span>
+            {% for skill in matched %}
+            <span style="background:green; color:white;">{{ skill }}</span>
+            {% endfor %}
+        </div>
+
+        <h3>❌ Missing Skills</h3>
+        <div class="skills">
+            {% for skill in missing %}
+            <span style="background:red; color:white;">{{ skill }}</span>
             {% endfor %}
         </div>
     </div>
     {% endif %}
-
 </div>
 
 </body>
