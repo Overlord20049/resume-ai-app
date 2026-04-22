@@ -15,11 +15,11 @@ def index():
         resume_text = extract_text(file)
         score = match_score(resume_text, job_desc)
 
-        # simple skill extraction
         skills = job_desc.lower().split()[:5]
 
     return render_template("index.html", score=score, skills=skills)
 
 
+# 🔥 IMPORTANT FOR RENDER
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=10000)
